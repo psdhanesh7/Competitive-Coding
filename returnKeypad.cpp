@@ -15,7 +15,7 @@
 
 using namespace std;
 
-string digitString(int n)
+string options(int n)
 {
 	switch(n)
 	{
