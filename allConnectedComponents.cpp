@@ -1,6 +1,7 @@
 #include<iostream>
 #include<queue>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 void printComponent(vector<int> component)
@@ -10,45 +11,31 @@ void printComponent(vector<int> component)
 	}
 }
 
-// vector<int> BFS(int **edges, int v, int sv, bool *visited)
-// {
-// 	vector<int> component;
-// 	queue<int> q;
-// 	q.push(sv);
-// 	visited[sv] = true;
-
-// 	while(!q.empty())
-// 	{
-// 		int value = q.front();
-// 		q.pop();
-// 		component.push_back(value);
-// 		for(int i = 0; i < v; i++)
-// 		{
-// 			if(edges[value][i] == 1 && !visited[i])
-// 			{
-// 				q.push(i);
-// 				visited[i] = true;
-// 			}
-// 		}
-// 	}
-
-// 	return component;
-// }
-
-vector<int> DFS(int **edges, int v, int sv, bool *visited)
+vector<int> BFS(int **edges, int v, int sv, bool *visited)
 {
 	vector<int> component;
-
+	queue<int> q;
+	q.push(sv);
 	visited[sv] = true;
 
-	for(int i = 0; i < v; i++)
+	while(!q.empty())
 	{
-		if(edges[sv][i] == 1 && !visited[i]){
-			component = DFS(edges, v, i, visited);
-			component.push_back(sv);
+		int value = q.front();
+		q.pop();
+		component.push_back(value);
+		for(int i = 0; i < v; i++)
+		{
+			if(edges[value][i] == 1 && !visited[i])
+			{
+				q.push(i);
+				visited[i] = true;
+			}
 		}
 	}
+
+	return component;
 }
+
 
 vector<vector<int>> allConnectedComponents(int **edges, int v)
 {
@@ -63,7 +50,9 @@ vector<vector<int>> allConnectedComponents(int **edges, int v)
 	for(int i = 0; i < v; i++)
 	{
 		if(!visited[i]){
+			
 			component = BFS(edges, v, i, visited);
+			sort(component.begin(), component.end());
 			connectedComponents.push_back(component);
 		}
 	}
