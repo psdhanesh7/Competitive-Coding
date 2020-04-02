@@ -78,7 +78,7 @@ Edge* kruskals(Edge *edges, int v, int e) {
 		int scrParent = getParent(parent, currentEdge.src);
 		int destParent = getParent(parent, currentEdge.dest);
 
-		// union algorithm for checking if a cycle will be formed from selecting this edge
+		// union find algorithm for checking if a cycle will be formed from selecting this edge
 		// Note : this union find algorithm takes O(v) time, which increases the overall time complexity
 		// We can reduce the time complexity if we use union by rank and path compressin algorithm for detecting the cycle
 		// This algorithm takes O(log v) time
