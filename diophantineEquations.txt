@@ -1,0 +1,55 @@
+Notes :
+
+
+Euclid's algorithm : 
+
+* gcd(a, b) = gcd(b, a%b), provided a > b
+
+
+Diophantine Equations :
+
+* Diophantine equations are polynomial equations for which integral solutions exist
+* ie, the unknowns should be integers
+* We are looking at only one kind of diophantine equations, ie linear diophantine equations
+* They are of the form ax + by = c , where a, b, c belongs to I
+* The solution to this equation exists(ie, x and y are integers) only if gcd(a, b) divides c
+* Intution : 
+ 	- gcd(a, b) divides a
+	- gcd(a, b) divides b
+	- Since ax is an integer, gcd(a, b) divides ax
+	- Since bx is an integer, gcd(a, b) dividex bx
+	- Therfore gcd(a, b) divides ax + by which is equal to c
+
+
+Extended Euclid's algorithm : 
+
+* Suppose we have an equation ax + by = gcd(a, b) - (1)
+* We need to get the values of x and y
+* We know that gcd(a, b) = gcd(b, a%b)
+* Therefore we can say bx1 + (a%b)y1 = gcd(b, a%b) - (2)
+* We know that a%b = a - b*[a/b] Note : [a/b] represents the floor value of a/b
+* So (2) => bx1 + (a - b*[a/b])y1 = gcd(b, a%b)
+* ie, bx1 + (a - b*[a/b])y1 = ax + by
+* => ay1 + b(x1 - [a/b]y1) = ax + by
+* Comparing the coefficients of a,
+	- x = y1
+* Comparing the coefficients of b, 
+	- y = (x1 - [a/b]y1)
+* ie, if we know the value of x1 and y1 we can calculate x and y
+
+
+Multiplicative Modulo Inverse : 
+
+* if (a.b)%m = 1, then b is the multiplicative modulo inverse of a w.r.t m
+* eg, Multiplicative modulo inverse of 5 w.r.t 17 is 7
+* (5 * 7)%17 = 1
+* Given (a.b)%m = 1;
+* => (a.b - 1)%m = 0
+* => a.b - 1 = mq, where q is an integer - (1)
+* ie a.b - 1 should be an integral multiple of m
+* (1) => a.b - mq = 1
+* => a.b + mQ = 1, Q = -q -(2)
+* We know that a solution for ax + by = c exists only if gcd(a, b) divides c
+* Therefore multiplicative modulo inverse b exists only if gcd(a, m) divides 1
+* => b exists if and only if a and m are coprimes
+* If a and m are coprimes then we can get b using extended Euclid algorithm
