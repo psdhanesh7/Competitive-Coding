@@ -1,0 +1,19 @@
+Euler Totient Function :
+
+* Euler Totient Function F(n) is equal to the no. of m such that 1 <= m < n and gcd(m, n) = 1
+* ie, the no. of numbers less than n which are its coprimes
+* Property : 
+	- F(ab) = F(a) * F(b), provided gcd(a, b) = 1.
+* We know that any no. can be expressed as the product of powers of prime nos
+* Suppose n can be represented as the product of powers of k distinct prime nos
+* Then, F(n) = F(p1^a) * F(p2^b) * ......... * F(pk^k)
+* Now, we need to calculate F(p^a)
+* This is the no. of numbers less that p^a which are coprimes of p^a
+* ie, coprimes of p^a in the range 1, 2, 3, 4,........., p^a
+* Since p is a prime all the no. except multiples of p will be coprimes to p^a
+* ie, All the no.s except 1, 1p, 2p, ....., (p^(a-1))*p, (note : excluding the last one), ie there are a total of a-1 no.s which are not coprimes of p^a
+* So F(p^a) = p^a - (No. of numbers which are not coprimes) = p^a - p^(a-1) = p^a[1-(1/p)]
+* F(n) = F(p1^a) * F(p2^b) * ......... * F(pk^k)
+		= p1^a[1 - (1/p1)] * p2^b[1 - (1/p2)] * p3^c[1 - (1/p3)]* .......... * pk^k[1 - (1/pk)]
+		= p1^a * p2^b * p3^c * ........... * pk^k * [1 - (1/p1)] * [1 - (1/p2)] * [1 - (1/p3)] * ............ * [1 - (1/pk)]
+		= n * [1 - (1/p1)] * [1 - (1/p2)] * [1 - (1/p3)] * ............ * [1 - (1/pk)]
