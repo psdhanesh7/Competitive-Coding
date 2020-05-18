@@ -13,6 +13,7 @@ bool isLeapCode(long n) {
     while(n > 0) {
         int d = n%10;
         if((last - d) == 1 || (d - last) == 1) {
+            last = d;
             n /= 10;
             continue;
         }
