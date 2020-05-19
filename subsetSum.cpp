@@ -4,27 +4,22 @@ using namespace std;
 bool sumPossible(int *ar, int n, int k, int **dp)
 {
 
-	if(k == 0)
-	{
+	if(k == 0) {
 		return true;
 	}
 
-	if(k < 0 || n == 0)
-	{
+	if(k < 0 || n == 0) {
 		return false;
 	}
 
-	if(dp[n][k] == 1)
-	{
+	if(dp[n][k] == 1) {
 		return true;
 	}
-	else if(dp[n][k] == 0)
-	{
+	else if(dp[n][k] == 0) {
 		return false;
 	}
 
-	if(sumPossible(ar, n-1, k-ar[n-1], dp) || sumPossible(ar, n-1, k, dp))
-	{
+	if(sumPossible(ar, n-1, k-ar[n-1], dp) || sumPossible(ar, n-1, k, dp)) {
 		dp[n][k] = 1;
 		return true;
 	}
